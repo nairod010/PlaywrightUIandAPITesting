@@ -1,4 +1,4 @@
-import {expect , type Page, type Locator} from '@playwright/test';
+import {expect, type Page, type Locator} from '@playwright/test';
 
 export class Header {
 	readonly cartLink: Locator;
@@ -15,7 +15,7 @@ export class Header {
 
 	async expectCartCount(count: number) {
 		if (count === 0) {
-			await expect(this.cartBadge).toBeHidden()
+			await expect(this.cartBadge).toBeHidden();
 		} else {
 			await expect(this.cartBadge).toHaveText(String(count));
 		}

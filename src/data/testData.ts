@@ -19,7 +19,7 @@ export const testCustomer: Customer = {
 	postalCode: '000000',
 };
 
-export const uploadFiles= {
-    browse: 'file_1.txt', 
-    dragAndDrop: 'file_2.txt'
-}
+export const uploadFiles = {
+	browse: 'file_1.txt',
+	dragAndDrop: 'file_2.txt',
+};

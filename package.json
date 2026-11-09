@@ -6,6 +6,9 @@
 	"scripts": {
 		"format": "prettier --write .",
 		"test": "playwright test",
+		"test:sauce": "playwright test --project=sauce",
+		"test:playground": "playwright test --project=playground",
+		"test:api": "playwright test --project=api",
 		"test:headed": "playwright test --headed",
 		"report": "playwright show-report"
 	},

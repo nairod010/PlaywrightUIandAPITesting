@@ -18,3 +18,8 @@ export const testCustomer: Customer = {
 	lastName: 'Blegu',
 	postalCode: '000000',
 };
+
+export const uploadFiles= {
+    browse: 'file_1.txt', 
+    dragAndDrop: 'file_2.txt'
+}

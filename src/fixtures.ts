@@ -4,6 +4,8 @@ import {InventoryPage} from './pages/saucedemo/InventoryPage';
 import {CartPage} from './pages/saucedemo/CartPage';
 import {CheckoutPage} from './pages/saucedemo/CheckoutPage';
 import { ScrollToClickPage } from './pages/playground/ScrollToClick';
+import { UploadPage } from './pages/playground/uploadPage';
+import { SelectPage } from './pages/playground/SelectPage';
 
 type SauceFixtures = {
 	loginPage: LoginPage;
@@ -13,7 +15,9 @@ type SauceFixtures = {
 };
 
 type PlaygroundFixtures = {
-    scrollToClickPage: ScrollToClickPage
+    scrollToClickPage: ScrollToClickPage;
+    uploadPage: UploadPage;
+    selectPage: SelectPage;
 }
 
 export const test = base.extend<SauceFixtures & PlaygroundFixtures>({
@@ -31,7 +35,14 @@ export const test = base.extend<SauceFixtures & PlaygroundFixtures>({
 	},
     scrollToClickPage: async ({page}, use) => {
         await use(new ScrollToClickPage(page))
+    },
+    uploadPage: async ({page}, use) => {
+        await use(new UploadPage(page))
+    },
+    selectPage: async ({page}, use) => {
+        await use(new SelectPage(page))
     }
+
 });
 
 export {expect} from '@playwright/test';

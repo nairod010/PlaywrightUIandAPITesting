@@ -7,6 +7,7 @@ import {ScrollToClickPage} from './pages/playground/ScrollToClick';
 import {UploadPage} from './pages/playground/uploadPage';
 import {SelectPage} from './pages/playground/SelectPage';
 import { FramePage } from './pages/playground/FramesPage';
+import { Auth } from './api/Auth';
 
 type SauceFixtures = {
 	loginPage: LoginPage;
@@ -22,7 +23,11 @@ type PlaygroundFixtures = {
     framePage: FramePage;
 };
 
-export const test = base.extend<SauceFixtures & PlaygroundFixtures>({
+type APIFixtures = {
+	auth: Auth
+}
+
+export const test = base.extend<SauceFixtures & PlaygroundFixtures & APIFixtures>({
 	loginPage: async ({page}, use) => {
 		await use(new LoginPage(page));
 	},
@@ -46,7 +51,10 @@ export const test = base.extend<SauceFixtures & PlaygroundFixtures>({
 	},
     framePage: async ({page}, use) => {
         await use(new FramePage(page))
-    }
+    },
+	auth: async ({request}, use) => {
+		await use(new Auth(request))
+	}
 });
 
 export {expect} from '@playwright/test';

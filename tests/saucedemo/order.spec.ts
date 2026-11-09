@@ -1,5 +1,6 @@
 import {test, expect} from '../../src/fixtures';
 import {type ProductInfo, testCustomer} from '../../src/data/testData';
+import { logData } from '../../src/utils/log';
 
 test('Plasare comanda cu cele mai scumpe 3 produse', async ({
 	loginPage,
@@ -20,13 +21,13 @@ test('Plasare comanda cu cele mai scumpe 3 produse', async ({
 	await test.step('2. Extragere din interfata a tuturor produselor disponibile(nume si pret)', async () => {
 		allProducts = await inventoryPage.getAllProducts();
 		expect(allProducts.length).toBeGreaterThan(0);
-		console.table(allProducts);
+		await logData('Toate Produsele' ,allProducts);
 	});
 
 	await test.step('3. Identificarea celor mai scumpe trei produse', async () => {
 		mostExpensive = inventoryPage.getMostExpensive(allProducts, 3);
 		expect(mostExpensive).toHaveLength(3);
-		console.table(mostExpensive);
+		await logData('Cele mai scumpe 3 produse',mostExpensive);
 	});
 
 	await test.step('4. Adauga produsele identificate in cos.', async () => {
@@ -41,7 +42,7 @@ test('Plasare comanda cu cele mai scumpe 3 produse', async ({
 		await cartPage.expectLoaded();
 
 		const cartItems = await cartPage.getCartItems(mostExpensive.length);
-		console.table(cartItems);
+		await logData('Produse adaugate in cos',cartItems);
 		expect(cartItems).toEqual(mostExpensive);
 	});
 

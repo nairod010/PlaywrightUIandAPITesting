@@ -51,7 +51,7 @@ export default defineConfig({
 		{
 			name: 'api',
 			testDir: './tests/api',
-			use: {...devices['Desktop Chrome'], baseURL: ''},
+			use: {...devices['Desktop Chrome'], baseURL: 'https://dummyjson.com'},
 		},
 		// {
 		//   name: 'chromium',

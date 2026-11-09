@@ -1,5 +1,6 @@
 import {test, expect} from '../../src/fixtures';
 import {SortOptions} from '../../src/data/testData';
+import { logData } from '../../src/utils/log';
 
 test('Sortarea produselor dupa pret', async ({loginPage, inventoryPage}) => {
 	let initialPrices: number[] = [];
@@ -16,9 +17,9 @@ test('Sortarea produselor dupa pret', async ({loginPage, inventoryPage}) => {
 		await inventoryPage.sortBy(SortOptions.priceAsc);
 
 		const prices = await inventoryPage.getAllPrices();
-		console.table(initialPrices);
-		console.table(prices);
-		console.table(initialPrices.sort((a, b) => a - b));
+		await logData('Preturi initiale',initialPrices);
+		await logData('Preturile curente', prices);
+		await logData('Preturi initiale sortate crescator', initialPrices.sort((a, b) => a - b));
 		expect(prices).toEqual(initialPrices.toSorted((a, b) => a - b));
 	});
 
@@ -26,8 +27,8 @@ test('Sortarea produselor dupa pret', async ({loginPage, inventoryPage}) => {
 		await inventoryPage.sortBy(SortOptions.priceDesc);
 
 		const prices = await inventoryPage.getAllPrices();
-		console.table(prices);
-		console.table(initialPrices.sort((a, b) => b - a));
+		await logData('Preturi curente',prices);
+		await logData('Preturi initiale sortate descrescator',initialPrices.sort((a, b) => b - a));
 		expect(prices).toEqual(initialPrices.toSorted((a, b) => b - a));
 	});
 });
